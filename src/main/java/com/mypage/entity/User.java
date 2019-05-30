@@ -1,4 +1,4 @@
-package com.mypage.domain;
+package com.mypage.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,9 @@ import lombok.Setter;
 @Setter
 public class User {
 
+    private Integer id;
     private String name;
-    private String sex;
+    private String nickName;
+    private Integer status;
 
 }
