@@ -5,62 +5,14 @@
     <title>Hello MyPage!</title>
 </head>
 <body>
-    <p th:text="'Hello，' + ${name} + '!'">mengsk</p>
-
-    <input type="text" name="userName" value="James Carrot" th:value="${name}" />
-
-    <div th:object="${user}">
-        <p>Name: <span th:text="*{name}">Saturn</span>.</p>
-        <p>Sex: <span th:text="*{sex}">Saturn</span>.</p>
-    </div>
-
-    <p><a href="detail.html" th:href="@{/getUserInfo(name='ssss')}">超链接</a></p>
-
-    <dt>价格</dt>
-    <dd th:text="${#numbers.formatDecimal(price,1,2)}">180</dd>
-    <dt>进货日期</dt>
-    <dd th:text="${#dates.format(date,'yyyy-MM-dd')}">2014-12-01</dd>
-
-    <hr/>
-    <form th:action="@{/getUserInfo}" th:object="${user}" method="post" th:method="post">
-        <input type="text" th:name="name" th:field="*{name}"><br>
-        <input type="text" th:name="sex" th:field="*{sex}"><br>
-        <input type="submit">
-    </form>
-    <hr/>
-
-    <!--用 th:remove 移除除了第一个外的静态数据，用第一个tr标签进行循环迭代显示-->
-    <tbody th:remove="all-but-first">
-        <tr th:each="users:${userList}">
-            <td th:text="${users.name}"></td>
-            <td th:text="${users.sex}"></td><br>
+    <table>
+        <tr><td>No.</td><td>姓名</td><td>昵称</td><td>状态</td></tr>
+        <tr th:each="user,memberStat:${userList}">
+            <td th:text="${memberStat.index + 1}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.nickName}"></td>
+            <td th:text="${user.status}"></td>
         </tr>
-        <tr>
-            <td>sss</td>
-            <td>666</td>
-        </tr>
-    </tbody>
-
-    <hr/>
-    <div class="form-group col-lg-6">
-        <label>姓名<span></span></label>
-        <!--除非resumes对象的name属性值为null，否则就用name的值作为placeholder值-->
-        <input type="text" class="form-control" th:unless="${resumes.name} eq '' or ${resumes.name} eq null"
-               data-required="true" th:placeholder="${resumes.name}"/>
-        <!--除非resumes对象的name属性不为空，否则就定义一个field方便封装对象，并用placeholder提示-->
-        <input type="text" th:field="${resumes.name}" class="form-control" th:unless="${resumes.name} ne null"
-               data-required="true" th:placeholder="请填写您的真实姓名"/>
-    </div>
-
-    <hr/>
-    <!--根据后台数据选中select的选项-->
-    <div class="form-group col-lg-6">
-        <label >性别<span> Sex:</span></label>
-        <select th:field="${resumes.sex}" class="form-control" th:switch="${resumes.sex.toString()}" data-required="true">
-            <option value="男" th:case="'男'" th:selected="selected">男</option>
-            <option value="女" th:case="'女'" th:selected="selected">女</option>
-            <option value="">请选择</option>
-        </select>
-    </div>
+    </table>
 </body>
 </html>
