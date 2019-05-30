@@ -96,7 +96,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>MyPage</finalName>
+		<finalName>mypage</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

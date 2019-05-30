@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 public class User {
 
-    public String name;
-    public String sex;
+    private String name;
+    private String sex;
+
 }
