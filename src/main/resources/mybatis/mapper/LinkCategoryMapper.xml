@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mypage.dao.LinkCategoryDao">
+    
+    <select id="selectLinkCategoryList" resultMap="mapper.base.linkCategory">
+        SELECT lc.id as id, lc.name as name, li.id as linkId, li.name as linkName, li.url, li.user_link_category_id as userLinkCategoryId, li.status as linkStatus, li.sort_no as linkSortNo
+        FROM user_link_category ulc
+        LEFT JOIN link_category lc ON ulc.link_category_id = lc.id
+        LEFT JOIN link_info li ON ulc.id = li.user_link_category_id and li.status = 1
+        WHERE ulc.user_id = #{userId} and lc.status = 1
+    </select>
+
+</mapper>

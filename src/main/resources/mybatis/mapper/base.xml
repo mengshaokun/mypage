@@ -8,5 +8,18 @@
         <result column="nickName" property="nickName" jdbcType="VARCHAR" />
         <result column="status" property="status" javaType="Integer"/>
     </resultMap>
+    
+    <resultMap id="linkCategory" type="com.mypage.entity.LinkCategory">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <collection property="linkInfoList" ofType="com.mypage.entity.LinkInfo">
+            <id column="linkId" property="id" jdbcType="INTEGER"/>
+            <result column="linkName" property="name" jdbcType="VARCHAR"/>
+            <result column="url" property="url" jdbcType="VARCHAR"/>
+            <result column="userLinkCategoryId" property="userLinkCategoryId" jdbcType="INTEGER"/>
+            <result column="linkStatus" property="status" jdbcType="INTEGER"/>
+            <result column="linkSortNo" property="sortNo" jdbcType="INTEGER"/>
+        </collection>
+    </resultMap>
 
 </mapper>

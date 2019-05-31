@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello MyPage!</title>
+</head>
+<body>
+    <div style="display: block; margin: 0 auto; width: 50%; ">
+        <table>
+            <tr th:each="linkCategory,memberStat:${linkCategoryList}">
+                <td th:text="${linkCategory.name}"></td>
+                <td>
+                    <table>
+                        <tr>
+                            <td th:each="linkInfo,memberStat:${linkCategory.linkInfoList}">
+                                <a th:href="@{${linkInfo.url}}" target="_blank"><span th:text="${linkInfo.name}"></span></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
