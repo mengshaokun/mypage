@@ -14,6 +14,8 @@ import java.util.List;
 
 /**
  * Created by mengsk on 2019/5/31.
+ *
+ * 首页相关
  */
 @Controller
 public class MainController {

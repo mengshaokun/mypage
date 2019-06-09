@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello MyPage!</title>
+    <style>
+        #warp {
+            margin: 0 auto; width: 800px; height: 100%; border: 1px solid #F00
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            table-layout: fixed;
+            border: 1px solid #F00;
+        }
+        table td {
+            vertical-align: middle;
+            padding: 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            nowrap: false;
+        }
+    </style>
 </head>
 <body>
-    <div style="display: block; margin: 0 auto; width: 50%; ">
+    <div>
         <table>
             <tr th:each="linkCategory,memberStat:${linkCategoryList}">
                 <td th:text="${linkCategory.name}"></td>

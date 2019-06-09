@@ -1,7 +1,9 @@
 package com.mypage.dao;
 
 import com.mypage.entity.User;
+import com.mypage.model.request.UserInfoReq;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,4 +15,9 @@ public interface UserDao {
 
     List<User> selectUserList();
 
+    User selectUserByNickName(@Param("nickName") String nickName);
+
+    String selectUserPassword(@Param("userId") Integer userId);
+
+    void insertUserInfo(@Param("user") UserInfoReq user);
 }
