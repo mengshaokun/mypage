@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -21,9 +22,10 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/getUserInfo")
-    public String getUserInfo(Model model) {
+    public String getUserInfo(Model model, HttpSession session) {
         List<User> userList = userService.getUserList();
         model.addAttribute("userList", userList);
+        session.setAttribute("user", userList);
         return "userList";
     }
 }

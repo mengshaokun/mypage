@@ -15,42 +15,30 @@ public class Response {
     private String message;
     private Object data;
 
+    public Response(Integer code, String message, Object data) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+    }
+
     public static Response SUCCESS() {
-        Response response = new Response();
-        response.setCode(200);
-        response.setMessage("success");
-        return response;
+        return new Response(200, "success", null);
     }
 
     public static Response SUCCESS(Object data) {
-        Response response = new Response();
-        response.setCode(200);
-        response.setMessage("success");
-        response.setData(data);
-        return response;
+        return new Response(200, "success", data);
     }
 
     public static Response FAIL() {
-        Response response = new Response();
-        response.setCode(100);
-        response.setMessage("fail");
-        return response;
+        return new Response(100, "fail", null);
     }
 
     public static Response FAIL(Object data) {
-        Response response = new Response();
-        response.setCode(100);
-        response.setMessage("fail");
-        response.setData(data);
-        return response;
+        return new Response(100, "fail", data);
     }
 
     public static Response FAIL(Integer code, Object data) {
-        Response response = new Response();
-        response.setCode(code);
-        response.setMessage("fail");
-        response.setData(data);
-        return response;
+        return new Response(code, "fail", data);
     }
 
     public static boolean isSuccess(Response response) {
