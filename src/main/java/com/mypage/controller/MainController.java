@@ -30,8 +30,8 @@ public class MainController {
         List<LinkCategory> linkCategoryList = new ArrayList<>();
         if (user == null) {
             //游客身份，展示public数据
-            //public公共用户id固定为2
-            linkCategoryList = linkCategoryService.getLinkCategoryList(2);
+            //public公共用户id固定为1
+            linkCategoryList = linkCategoryService.getLinkCategoryList(1);
         } else {
             //用户身份，展示用户设置的数据
             linkCategoryList = linkCategoryService.getLinkCategoryList(user.getId());
