@@ -21,6 +21,7 @@ import javax.validation.Valid;
  * 用户登录注册相关
  */
 @Controller
+@RequestMapping("/base")
 public class BaseController {
 
     @Autowired
@@ -52,6 +53,8 @@ public class BaseController {
      * @param bindingResult
      * @return
      */
+    @RequestMapping(value = "/regist", method = RequestMethod.POST)
+    @ResponseBody
     public Response regist(@Validated UserInfoReq userInfoReq, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Response.FAIL(bindingResult.getAllErrors().get(0).getDefaultMessage());

@@ -1,5 +1,6 @@
 package com.mypage.model.request;
 
+import com.mypage.common.CommonContent;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,9 +14,9 @@ import javax.validation.constraints.NotBlank;
 public class UserInfoReq {
 
     private String name;
-    @NotBlank(message = "昵称不能为空！")
+    @NotBlank(message = CommonContent.NICK_NAME_NULL)
     private String nickName;
-    @NotBlank(message = "密码不能为空！")
+    @NotBlank(message = CommonContent.PASSWORD_NULL)
     private String password;
     private String code;
 

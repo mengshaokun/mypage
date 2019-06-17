@@ -18,12 +18,18 @@ import java.util.List;
  * 首页相关
  */
 @Controller
+@RequestMapping("/main")
 public class MainController {
 
     @Autowired
     private LinkCategoryService linkCategoryService;
 
-
+    /**
+     * 跳转到主页
+     * @param model
+     * @param session
+     * @return
+     */
     @RequestMapping("/toMain")
     public String toMainPage(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");

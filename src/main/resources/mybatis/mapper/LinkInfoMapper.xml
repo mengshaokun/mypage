@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mypage.dao.LinkInfoDao">
+
+    <insert id="insertLinkInfo">
+        INSERT INTO link_info (name, url, user_link_category_id, status, sort_no)
+        VALUES (#{linkInfoReq.name}, #{linkInfoReq.url}, #{linkInfoReq.userLinkCategoryId}, 1, #{linkInfoReq.sortNo});
+    </insert>
+
+    <update id="updateLinkInfo">
+        UPDATE link_info SET
+            name = #{linkInfoReq.name},
+            url = #{linkInfoReq.url},
+            user_link_category_id = #{linkInfoReq.userLinkCategoryId},
+            status = #{linkInfoReq.status},
+            sort_no = #{linkInfoReq.sortNo}
+        where id = #{linkInfoReq.id}
+    </update>
+
+</mapper>
