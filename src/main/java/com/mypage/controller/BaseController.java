@@ -27,6 +27,11 @@ public class BaseController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/toLogin")
+    public String toLogin() {
+        return "login";
+    }
+
     /**
      * 用户登录方法
      * @param nickName

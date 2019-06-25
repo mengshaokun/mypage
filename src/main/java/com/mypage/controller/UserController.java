@@ -25,7 +25,7 @@ public class UserController {
     public String getUserInfo(Model model, HttpSession session) {
         List<User> userList = userService.getUserList();
         model.addAttribute("userList", userList);
-        session.setAttribute("user", userList);
+        session.setAttribute("userInfo", userList.get(0));
         return "userList";
     }
 }
