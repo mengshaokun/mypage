@@ -7,6 +7,8 @@ package com.mypage.common;
 public class CommonContent {
 
     public static final String USER_NULL = "用户名或密码错误！";
+    public static final String LOGIN_SUCCESS = "登录成功";
+    public static final String REGIST_SUCCESS = "注册成功";
     public static final String USER_WRONG_STATUS = "该用户非正常状态！";
     public static final String PASSWORD_ERROR = "用户名或密码错误！";
     public static final String LINK_INFO_NAME_NULL = "链接名称不能为空！";

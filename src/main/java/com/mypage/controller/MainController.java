@@ -4,6 +4,7 @@ import com.mypage.entity.LinkCategory;
 import com.mypage.entity.User;
 import com.mypage.service.LinkCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,8 @@ public class MainController {
     @Autowired
     private LinkCategoryService linkCategoryService;
 
+    @Value("${user.session.key}")
+    private String userSessionKey;
     /**
      * 跳转到主页
      * @param model
@@ -32,7 +35,7 @@ public class MainController {
      */
     @RequestMapping("/toMain")
     public String toMainPage(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(userSessionKey);
         List<LinkCategory> linkCategoryList = new ArrayList<>();
         if (user == null) {
             //游客身份，展示public数据

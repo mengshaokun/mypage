@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         if (!pwd.equals(password)) {
             return Response.FAIL(CommonContent.PASSWORD_ERROR);
         }
-        return Response.SUCCESS();
+        return Response.SUCCESS(CommonContent.LOGIN_SUCCESS);
     }
 
     @Override
@@ -61,6 +61,6 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             return Response.FAIL(e);
         }
-        return Response.SUCCESS();
+        return Response.SUCCESS(CommonContent.REGIST_SUCCESS);
     }
 }

@@ -5,6 +5,7 @@ import com.mypage.entity.User;
 import com.mypage.model.request.UserInfoReq;
 import com.mypage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -32,6 +33,8 @@ public class BaseController {
         return "login";
     }
 
+    @Value("${user.session.key}")
+    private String userSessionKey;
     /**
      * 用户登录方法
      * @param nickName
@@ -47,7 +50,7 @@ public class BaseController {
         if (Response.isSuccess(login)) {
             //查询用户信息并保存到session
             User user = userService.getUserByNickName(nickName);
-            session.setAttribute("userInfo", user);
+            session.setAttribute(userSessionKey, user);
         }
         return login;
     }
@@ -60,11 +63,43 @@ public class BaseController {
      */
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     @ResponseBody
-    public Response regist(@Validated UserInfoReq userInfoReq, BindingResult bindingResult) {
+    public Response regist(@Validated UserInfoReq userInfoReq, BindingResult bindingResult, HttpSession session) {
         if (bindingResult.hasErrors()) {
-            Response.FAIL(bindingResult.getAllErrors().get(0).getDefaultMessage());
+            return Response.FAIL(bindingResult.getAllErrors().get(0).getDefaultMessage());
         }
         //注册
-        return userService.regist(userInfoReq);
+        Response regist = userService.regist(userInfoReq);
+        if (Response.isSuccess(regist)) {
+            User userByNickName = userService.getUserByNickName(userInfoReq.getNickName());
+            session.setAttribute(userSessionKey, userByNickName);
+        }
+        return regist;
+    }
+
+    /**
+     * 用于前端校验昵称是否存在
+     * @param nickName
+     * @return
+     */
+    @RequestMapping(value = "/checkNickNameIsExist", method = RequestMethod.POST)
+    @ResponseBody
+    public String checkNickNameIsExist(String nickName) {
+        User userByNickName = userService.getUserByNickName(nickName);
+        if (userByNickName == null) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
+    /**
+     * 退出
+     * @param httpSession
+     * @return
+     */
+    @RequestMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.removeAttribute(userSessionKey);
+        return "redirect:/main/toMain";
     }
 }

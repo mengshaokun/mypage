@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html  lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>个人中心</title>
+
+	<script src="../js/common.js"></script>
+	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../css/toastr.min.css" type="text/css">
+
+	<script src="../js/jquery-3.4.1.min.js" type="text/javascript"></script>
+	<script src="../js/popper.min.js" type="text/javascript"></script><!--popper.min.js 用于弹窗、提示、下拉菜单-->
+	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="../js/toastr.min.js" type="text/javascript"></script>
+
+	<style>
+		.error{
+			color:red;
+		}
+		.col-center {
+			float: none;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 20px;
+		}
+	</style>
+
+</head>
+	<body>
+		<div class="container">
+			<ul class="nav nav-pills" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link active" data-toggle="tab" href="#home">链接信息</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#menu1">个人信息</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#menu2">安全信息</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div id="home" class="container tab-pane active"><br>
+					<h3>链接信息</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</div>
+				<div id="menu1" class="container tab-pane fade"><br>
+					<iframe src="../html/login.html" width="100%" height="800" frameborder="0">
+						您的浏览器不支持iframe，请升级
+					</iframe>
+				</div>
+				<div id="menu2" class="container tab-pane fade"><br>
+					<h3>安全信息</h3>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

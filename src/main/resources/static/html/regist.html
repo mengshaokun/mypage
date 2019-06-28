@@ -21,28 +21,47 @@
 
 	<script>
 		$().ready(function() {
-			$("#loginForm").validate({
+			$("#registForm").validate({
 				rules: {
 				    nickName: {
-				        required: true
+				        required: true,
+						checkNickName: true,
+                        remote: {
+                            url: "/base/checkNickNameIsExist",     //后台处理程序  远程地址只能输出 "true" 或 "false"，不能有其他输出。
+                            type: "post",               //数据发送方式
+                            dataType: "json",           //接受数据格式
+                            data: {                     //要传递的数据
+                                username: function() {
+                                    return $("#nickName").val();
+                                }
+                            }
+                        }
 					},
 					password: {
-				        required: true
+				        required: true,
+						checkPassword: true
+					},
+                    rePwd: {
+                        equalTo: "#password"
 					}
 				},
                 messages: {
 				    nickName: {
-                        required: "请输入用户名"
+                        required: "请输入昵称",
+                        remote: "该昵称已存在"
 					},
 					password: {
 				        required: "请输入密码"
-					}
+					},
+                    rePwd: {
+                        equalTo: "两次密码不一致"
+                    }
 				},
                 submitHandler: function(form) {
                     $.ajax({
                         type: "POST",
-                        url: "/base/login",
-                        data: $("#loginForm").serialize(),
+                        url: "/base/regist",
+                        data: $("#registForm").serialize(),
                         success: function (data) {
                             console.info(data.code);
                             if (data.code == 200) {
@@ -55,8 +74,18 @@
 
                         }
                     });
-                }
+                },
 			});
+            //自定义正则表达示验证方法
+            $.validator.addMethod("checkPassword", function (value,element,params) {
+                var checkPassword = /^\w{6,20}$/g;
+                return this.optional(element) || (checkPassword.test(value))
+            },"只允许6-20位英文字母、数字或者下画线");
+
+            $.validator.addMethod("checkNickName", function (value,element,params) {
+                var checkNickName = /^\w{2,10}$/g;
+                return this.optional(element) || (checkNickName.test(value))
+            },"只允许2-10位英文字母、数字或者下画线");
         });
 	</script>
 	<style>
@@ -75,24 +104,23 @@
 </head>
 	<body>
 		<div class="container">
-			<form id="loginForm">
+			<form id="registForm">
 				<div class="col-md-4 col-center">
+					<div class="form-group">
+						<input type="text" class="form-control" id="name" name="name" placeholder="真实姓名(非必填)">
+					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" id="nickName" name="nickName" placeholder="昵称">
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control" id="password" name="password" placeholder="密码">
 					</div>
-					<div>
-						<button type="submit" class="btn btn-primary btn-block">登录</button>
+					<div class="form-group">
+						<input type="password" class="form-control" id="rePwd" name="rePwd" placeholder="确认密码">
 					</div>
-					<div>
-						<div style="text-align: left; float: left">
-							<a href="/main/toMain">游客身份</a>
-						</div>
-						<div style="text-align: right; float: right">
-							<label>还没有账号?</label> <a href="regist.html">注册</a>
-						</div>
+					<button type="submit" class="btn btn-primary btn-block">注册</button>
+					<div style="text-align: right">
+						<label>已经有账号</label> <a href="login.html">登录</a>
 					</div>
 				</div>
 			</form>
