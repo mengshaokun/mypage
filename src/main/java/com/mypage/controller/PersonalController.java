@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 个人中心相关
  */
 @Controller
-@RequestMapping("/checkLogin")
-public class Personal {
+@RequestMapping("/personal")
+public class PersonalController {
 
     @RequestMapping("/toPersonal")
     public String toPersonal() {

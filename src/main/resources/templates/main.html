@@ -39,7 +39,7 @@
         </form>
         <div style="float:right; margin-top: 30px; ">
             <span th:if="${session.userInfo != null}">
-                <span style="font-size: 20px" th:text="${session.userInfo.nickName}"></span>
+                <span style="font-size: 20px"><a th:href="@{/personal/toPersonal}" th:text="${session.userInfo.nickName}"></a></span>
                 <span style="font-size: 20px"><a th:href="@{/base/logout}" target="_self">退出</a></span>
             </span>
             <span th:if="${session.userInfo == null}">

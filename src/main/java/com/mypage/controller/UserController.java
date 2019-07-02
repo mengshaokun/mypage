@@ -1,5 +1,6 @@
 package com.mypage.controller;
 
+import com.mypage.common.Response;
 import com.mypage.entity.User;
 import com.mypage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.List;
  * 用户信息相关
  */
 @Controller
+@RequestMapping("/personal/userInfo")
 public class UserController {
 
     @Autowired
@@ -27,5 +29,10 @@ public class UserController {
         model.addAttribute("userList", userList);
         session.setAttribute("userInfo", userList.get(0));
         return "userList";
+    }
+
+    @RequestMapping("/toUserInfo")
+    private String toUserInfo() {
+        return "userInfo";
     }
 }
