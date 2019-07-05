@@ -22,4 +22,15 @@
         </collection>
     </resultMap>
 
+    <resultMap id="userLinkInfoResp" type="com.mypage.model.response.UserLinkInfoResp">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="userLinkCategoryId" property="userLinkCategoryId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="sortNo" property="sortNo" jdbcType="INTEGER"/>
+
+        <result column="linkCategoryId" property="linkCategoryId" jdbcType="INTEGER"/>
+        <result column="linkCategoryName" property="linkCategoryName" jdbcType="VARCHAR"/>
+    </resultMap>
 </mapper>

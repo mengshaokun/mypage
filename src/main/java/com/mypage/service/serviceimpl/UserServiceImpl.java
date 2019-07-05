@@ -63,4 +63,10 @@ public class UserServiceImpl implements UserService {
         }
         return Response.SUCCESS(CommonContent.REGIST_SUCCESS);
     }
+
+    @Override
+    public Response modifyUserInfo(String name, String nickName, Integer id) {
+        userDao.updateUserInfo(name, nickName, id);
+        return Response.SUCCESS(CommonContent.UPDATE_SUCCESS);
+    }
 }

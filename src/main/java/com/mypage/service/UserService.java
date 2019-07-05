@@ -18,4 +18,6 @@ public interface UserService {
     User getUserByNickName(String nickName);
 
     Response regist(UserInfoReq userInfoReq);
+
+    Response modifyUserInfo(String name, String nickName, Integer id);
 }

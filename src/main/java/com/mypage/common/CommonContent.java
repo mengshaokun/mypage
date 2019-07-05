@@ -18,4 +18,5 @@ public class CommonContent {
     public static final String PASSWORD_NULL = "密码不能为空！";
     public static final String ADD_LINK_INFO_ERROR = "添加链接信息失败！";
     public static final String MODIFY_LINK_INFO_ERROR = "修改链接信息失败！";
+    public static final String UPDATE_SUCCESS = "修改成功！";
 }

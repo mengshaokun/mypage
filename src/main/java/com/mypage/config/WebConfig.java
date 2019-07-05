@@ -20,11 +20,9 @@ public class WebConfig implements WebMvcConfigurer{
 
     private static List<String> pathPatternsList;
 
-    static {
-        pathPatternsList.add("/personal/**");
-    }
-
-
+//    static {
+//        pathPatternsList.add("/personal/**");
+//    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -34,7 +32,9 @@ public class WebConfig implements WebMvcConfigurer{
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.addInterceptor(loginInterceptor).addPathPatterns(pathPatternsList);
+        registry.addInterceptor(loginInterceptor)
+                .addPathPatterns("/personal/**")
+                .addPathPatterns("/base/personal/checkNickNameIsExist");
 
     }
 }

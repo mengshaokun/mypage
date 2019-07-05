@@ -14,12 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 /**
  * Created by MSK on 2019/6/1.
  *
- * 用户登录注册相关
+ * 基础功能相关
  */
 @Controller
 @RequestMapping("/base")
@@ -28,13 +27,15 @@ public class BaseController {
     @Autowired
     private UserService userService;
 
+    @Value("${user.session.key}")
+    private String userSessionKey;
+
+
     @RequestMapping(value = "/toLogin")
     public String toLogin() {
         return "login";
     }
 
-    @Value("${user.session.key}")
-    private String userSessionKey;
     /**
      * 用户登录方法
      * @param nickName
@@ -91,6 +92,29 @@ public class BaseController {
             return "false";
         }
     }
+
+    /**
+     * 用于前端修改个人信息校验昵称是否存在--可以当时登录的昵称一样，需要登录校验
+     * @param nickName
+     * @return
+     */
+    @RequestMapping(value = "/personal/checkNickNameIsExist", method = RequestMethod.POST)
+    @ResponseBody
+    public String personalCheckNickNameIsExist(String nickName, Integer id, HttpSession session) {
+        User use = (User) session.getAttribute(userSessionKey);
+        if (use != null && nickName.equals(use.getNickName()) && id.equals(use.getId())) {
+            return "true";
+        }
+
+        User userByNickName = userService.getUserByNickName(nickName);
+        if (userByNickName == null) {
+            return "true";
+        } else {
+            return "false";
+        }
+
+    }
+
 
     /**
      * 退出

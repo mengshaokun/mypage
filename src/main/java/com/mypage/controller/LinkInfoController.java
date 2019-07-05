@@ -1,15 +1,18 @@
 package com.mypage.controller;
 
-import com.mypage.common.Response;
-import com.mypage.model.request.LinkInfoReq;
+import com.mypage.entity.User;
+import com.mypage.model.response.UserLinkInfoResp;
 import com.mypage.service.LinkInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by mengsk on 2019/6/14.
@@ -17,39 +20,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 链接信息相关
  */
 @Controller
-@RequestMapping("/linkInfo")
+@RequestMapping("/personal/linkInfo")
 public class LinkInfoController {
 
     @Autowired
     private LinkInfoService linkInfoService;
+    @Value("${user.session.key}")
+    private String userSessionKey;
 
-    /**
-     * 添加链接信息
-     * @param linkInfoReq
-     * @param bindingResult
-     * @return
-     */
-    @RequestMapping(value = "/addLinkInfo", method = RequestMethod.POST)
-    @ResponseBody
-    public Response addLinkInfo(@Validated LinkInfoReq linkInfoReq, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return Response.FAIL(bindingResult.getAllErrors().get(0).getDefaultMessage());
-        }
-        return linkInfoService.addLinkInfo(linkInfoReq);
+
+    @RequestMapping(value = "/toLinkInfo")
+    public String toLinkInfo(Model model, HttpSession session) {
+        User user = (User) session.getAttribute(userSessionKey);
+        List<UserLinkInfoResp> userLinkInfo = linkInfoService.getUserLinkInfo(user.getId());
+        model.addAttribute("userLinkInfo", userLinkInfo);
+
+        return "linkInfo";
     }
 
-    /**
-     * 修改链接信息
-     * @param linkInfoReq
-     * @param bindingResult
-     * @return
-     */
-    @RequestMapping(value = "/modifyLinkInfo", method = RequestMethod.POST)
-    @ResponseBody
-    public Response modifyLinkInfo(@Validated LinkInfoReq linkInfoReq, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return Response.FAIL(bindingResult.getAllErrors().get(0).getDefaultMessage());
-        }
-        return linkInfoService.modifyLinkInfo(linkInfoReq);
+    @RequestMapping(value = "/removeLinkInfo/{id}", method = RequestMethod.GET)
+    public String removeLinkInfo(@PathVariable("id") Integer id) {
+        linkInfoService.removeLinkUrl(id);
+        return "redirect:/personal/linkInfo/toLinkInfo";
     }
+
+
+
+
+
+
+
 }

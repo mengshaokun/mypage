@@ -20,4 +20,6 @@ public interface UserDao {
     String selectUserPassword(@Param("userId") Integer userId);
 
     void insertUserInfo(@Param("user") UserInfoReq user);
+
+    void updateUserInfo(@Param("name") String name, @Param("nickName") String nickName, @Param("id") Integer id);
 }
