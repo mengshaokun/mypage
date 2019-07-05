@@ -37,3 +37,11 @@ toastr.options = {
     "progressBar":true//设置true或false，在消息窗口下面添加一个进度条，进度条走完时消息自动消失
 
 };*/
+
+function isDelete() {
+    if (confirm("确定要删除吗？")) {
+        return true;
+    } else {
+        return false;
+    }
+}
