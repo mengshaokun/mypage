@@ -15,4 +15,9 @@
     <delete id="deleteLinkInfo">
         delete from link_info where id = #{id}
     </delete>
+
+    <insert id="insertLinkInfo">
+        insert into link_info (name, url, user_link_category_id, status, sort_no)
+        values (#{linkInfo.name}, #{linkInfo.url}, #{linkInfo.userLinkCategoryId}, #{linkInfo.status}, #{linkInfo.sortNo})
+    </insert>
 </mapper>

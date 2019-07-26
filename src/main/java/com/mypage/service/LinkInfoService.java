@@ -1,6 +1,5 @@
 package com.mypage.service;
 
-import com.mypage.common.Response;
 import com.mypage.model.request.LinkInfoReq;
 import com.mypage.model.response.UserLinkInfoResp;
 
@@ -13,4 +12,7 @@ public interface LinkInfoService {
     List<UserLinkInfoResp> getUserLinkInfo(Integer userId);
 
     void removeLinkUrl(Integer id);
+
+    void addLinkInfo(LinkInfoReq linkInfoReq);
+
 }

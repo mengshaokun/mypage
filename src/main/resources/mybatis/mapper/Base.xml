@@ -33,4 +33,19 @@
         <result column="linkCategoryId" property="linkCategoryId" jdbcType="INTEGER"/>
         <result column="linkCategoryName" property="linkCategoryName" jdbcType="VARCHAR"/>
     </resultMap>
+    
+    <resultMap id="userLinkCategory" type="com.mypage.entity.UserLinkCategory">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="link_category_id" property="linkCategoryId" jdbcType="INTEGER"/>
+        <result column="sort_no" property="sortNo" jdbcType="INTEGER"/>
+    </resultMap>
+    
+    <resultMap id="codeLibrary" type="com.mypage.entity.CodeLibrary">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="code_no" property="codeNo" jdbcType="VARCHAR"/>
+        <result column="item_no" property="itemNo" jdbcType="VARCHAR"/>
+        <result column="item_name" property="itemName" jdbcType="VARCHAR"/>
+        <result column="sort_no" property="sortNo" jdbcType="INTEGER"/>
+    </resultMap>
 </mapper>

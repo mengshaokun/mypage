@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mypage.dao.UserLinkCategoryDao">
+    <insert id="insertUserLinkCategory">
+        insert into user_link_category (user_id, link_category_id, sort_no)
+        values (#{userLinkCategory.userId}, #{userLinkCategory.linkCategoryId}, #{userLinkCategory.sortNo});
+    </insert>
+
+    <select id="selectByUserIdAndCategoryId" resultMap="mapper.base.userLinkCategory">
+        select id, user_id, link_category_id, sort_no from user_link_category where user_id = #{userId} and link_category_id = #{linkCategoryId}
+    </select>
+
+</mapper>

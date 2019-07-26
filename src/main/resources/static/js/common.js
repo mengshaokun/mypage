@@ -39,9 +39,10 @@ toastr.options = {
 };*/
 
 function isDelete() {
-    if (confirm("确定要删除吗？")) {
+    confirm("确定要删除吗？");
+    /*if (confirm("确定要删除吗？")) {
         return true;
     } else {
         return false;
-    }
+    }*/
 }
