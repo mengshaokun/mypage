@@ -1,9 +1,12 @@
 package com.mypage.controller;
 
+import com.mypage.common.CommonContent;
 import com.mypage.common.Response;
 import com.mypage.entity.User;
 import com.mypage.model.request.UserInfoReq;
 import com.mypage.service.UserService;
+import com.mypage.utils.DateUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping("/base")
+@Slf4j
 public class BaseController {
 
     @Autowired
@@ -52,6 +56,7 @@ public class BaseController {
             //查询用户信息并保存到session
             User user = userService.getUserByNickName(nickName);
             session.setAttribute(userSessionKey, user);
+            log.info(CommonContent.LOGIN_LOG, nickName, DateUtils.getNowDateStr());
         }
         return login;
     }
@@ -73,6 +78,7 @@ public class BaseController {
         if (Response.isSuccess(regist)) {
             User userByNickName = userService.getUserByNickName(userInfoReq.getNickName());
             session.setAttribute(userSessionKey, userByNickName);
+            log.info(CommonContent.REGIST_LOG, userInfoReq.getNickName(), DateUtils.getNowDateStr());
         }
         return regist;
     }

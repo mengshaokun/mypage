@@ -12,5 +12,5 @@ public interface UserLinkCategoryDao {
 
     UserLinkCategory selectByUserIdAndCategoryId(@Param("userId") Integer userId, @Param("linkCategoryId") Integer linkCategoryId);
 
-    Integer insertUserLinkCategory(@Param("userLinkCategory") UserLinkCategory userLinkCategory);
+    void insertUserLinkCategory(@Param("userLinkCategory") UserLinkCategory userLinkCategory);
 }

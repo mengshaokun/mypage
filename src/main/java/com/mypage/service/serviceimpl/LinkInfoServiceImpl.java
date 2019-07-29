@@ -10,6 +10,8 @@ import com.mypage.service.LinkInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class LinkInfoServiceImpl implements LinkInfoService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void addLinkInfo(LinkInfoReq linkInfoReq) {
         //根据userId和分类id查询用户对应的分类表id，如果查不到，则插入一条用户分类表信息返回id信息
         Integer userLinkCategoryId;
@@ -45,10 +48,13 @@ public class LinkInfoServiceImpl implements LinkInfoService {
             userLinkCategory.setUserId(linkInfoReq.getUserId());
             userLinkCategory.setLinkCategoryId(linkInfoReq.getLinkCategoryId());
             userLinkCategory.setSortNo(999);
-            userLinkCategoryId = userLinkCategoryDao.insertUserLinkCategory(userLinkCategory);
-        } else {
-            userLinkCategoryId = userLinkCategory.getId();
+            userLinkCategoryDao.insertUserLinkCategory(userLinkCategory);
+
+            userLinkCategory = userLinkCategoryDao.selectByUserIdAndCategoryId(linkInfoReq.getUserId(), linkInfoReq.getLinkCategoryId());
         }
+
+        userLinkCategoryId = userLinkCategory.getId();
+
         LinkInfo linkInfo = new LinkInfo();
         linkInfo.setName(linkInfoReq.getName());
         linkInfo.setUrl(linkInfoReq.getUrl());

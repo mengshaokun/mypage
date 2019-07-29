@@ -21,4 +21,7 @@ public class CommonContent {
     public static final String MODIFY_LINK_INFO_ERROR = "修改链接信息失败！";
     public static final String UPDATE_SUCCESS = "修改成功！";
     public static final String USER_ID_NULL = "用户ID不能为空！";
+
+    public static final String LOGIN_LOG = "用户：{}，于{}登录系统。";
+    public static final String REGIST_LOG = "用户：{}，于{}注册成功。";
 }
