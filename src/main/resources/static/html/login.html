@@ -41,13 +41,13 @@
                 submitHandler: function(form) {
                     $.ajax({
                         type: "POST",
-                        url: "/base/login",
+                        url: "/mypage/base/login",
                         data: $("#loginForm").serialize(),
                         success: function (data) {
                             console.info(data.code);
                             if (data.code == 200) {
                                 toastr.success(data.data);
-                                window.location.href = "/main/toMain"
+                                window.location.href = "/mypage/main/toMain"
                             }
                             if (data.code != 200) {
                                 toastr.error(data.data);
@@ -88,7 +88,7 @@
 					</div>
 					<div>
 						<div style="text-align: left; float: left">
-							<a href="/main/toMain">游客身份</a>
+							<a href="/mypage/main/toMain">游客身份</a>
 						</div>
 						<div style="text-align: right; float: right">
 							<label>还没有账号?</label> <a href="regist.html">注册</a>

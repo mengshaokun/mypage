@@ -27,17 +27,17 @@ public class MypageApplicationTests {
 
 	@Test
     public void testLog() {
-	    while (true) {
-            log.info("普通日志");
-			log.info("{}:::日志", "ceshi");
-			log.error("错误日志");
-			try {
-				System.out.println(1/0);
-			} catch (Exception e) {
-				log.error("{}，错误信息：", "ceshi", e);
-				return;
-			}
-
-		}
+//	    while (true) {
+//            log.info("普通日志");
+//			log.info("{}:::日志", "ceshi");
+//			log.error("错误日志");
+////			try {
+////				System.out.println(1/0);
+////			} catch (Exception e) {
+////				log.error("{}，错误信息：", "ceshi", e);
+////				return;
+////			}
+//
+//		}
     }
 }

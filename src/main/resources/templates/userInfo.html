@@ -27,7 +27,7 @@
 				        required: true,
 						checkNickName: true,
                         remote: {
-                            url: "/base/personal/checkNickNameIsExist",     //后台处理程序  远程地址只能输出 "true" 或 "false"，不能有其他输出。
+                            url: "/mypage/base/personal/checkNickNameIsExist",     //后台处理程序  远程地址只能输出 "true" 或 "false"，不能有其他输出。
                             type: "post",               //数据发送方式
                             dataType: "json",           //接受数据格式
                             data: {                     //要传递的数据
@@ -50,7 +50,7 @@
                 submitHandler: function(form) {
                     $.ajax({
                         type: "POST",
-                        url: "/personal/userInfo/modifyUserInfo",
+                        url: "/mypage/personal/userInfo/modifyUserInfo",
                         data: $("#personalInfoForm").serialize(),
                         success: function (data) {
                             console.info(data.code);
