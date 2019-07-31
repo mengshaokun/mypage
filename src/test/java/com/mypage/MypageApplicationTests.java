@@ -1,6 +1,7 @@
 package com.mypage;
 
 import com.mypage.utils.RedisUtil;
+import com.mypage.utils.SignUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,4 +41,10 @@ public class MypageApplicationTests {
 //
 //		}
     }
+
+    @Test
+	public void testMd5() {
+		System.out.println(SignUtils.md5Encrypt("1233"));
+	}
+
 }
