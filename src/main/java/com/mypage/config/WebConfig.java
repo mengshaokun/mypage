@@ -3,8 +3,10 @@ package com.mypage.config;
 import com.mypage.config.interceptors.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
@@ -29,6 +31,10 @@ public class WebConfig implements WebMvcConfigurer{
 
     }
 
+    /**
+     * 添加拦截器
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
@@ -36,5 +42,15 @@ public class WebConfig implements WebMvcConfigurer{
                 .addPathPatterns("/personal/**")
                 .addPathPatterns("/base/personal/checkNickNameIsExist");
 
+    }
+
+    /**
+     * 设置默认访问路径
+     * @param registry
+     */
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("redirect:/main/toMain");
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 }
