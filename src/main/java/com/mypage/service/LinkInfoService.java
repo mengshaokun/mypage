@@ -9,7 +9,7 @@ import java.util.List;
  * Created by mengsk on 2019/6/14.
  */
 public interface LinkInfoService {
-    List<UserLinkInfoResp> getUserLinkInfo(Integer userId);
+    List<UserLinkInfoResp> getUserLinkInfo(Integer userId, Integer pageNum);
 
     void removeLinkUrl(Integer id);
 

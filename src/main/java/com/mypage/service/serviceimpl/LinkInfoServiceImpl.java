@@ -1,5 +1,7 @@
 package com.mypage.service.serviceimpl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mypage.dao.LinkInfoDao;
 import com.mypage.dao.UserLinkCategoryDao;
 import com.mypage.entity.LinkInfo;
@@ -22,14 +24,19 @@ import java.util.List;
 @Slf4j
 public class LinkInfoServiceImpl implements LinkInfoService {
 
+    private static final Integer pageSize = 20;
+
     @Autowired
     private LinkInfoDao linkInfoDao;
     @Autowired
     private UserLinkCategoryDao userLinkCategoryDao;
 
     @Override
-    public List<UserLinkInfoResp> getUserLinkInfo(Integer userId) {
-        return linkInfoDao.selectUserLinkInfo(userId);
+    public List<UserLinkInfoResp> getUserLinkInfo(Integer userId, Integer pageNum) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<UserLinkInfoResp> userLinkInfoRespList = linkInfoDao.selectUserLinkInfo(userId);
+//        PageInfo<UserLinkInfoResp> page = new PageInfo<>(userLinkInfoRespList);
+        return userLinkInfoRespList;
     }
 
     @Override

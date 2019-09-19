@@ -1,5 +1,6 @@
 package com.mypage.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.mypage.entity.CodeLibrary;
 import com.mypage.entity.LinkCategory;
 import com.mypage.entity.User;
@@ -16,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -39,10 +41,11 @@ public class LinkInfoController {
 
 
     @RequestMapping(value = "/toLinkInfo")
-    public String toLinkInfo(Model model, HttpSession session) {
+    public String toLinkInfo(@RequestParam(name = "pageNum", defaultValue = "1")Integer pageNum, Model model, HttpSession session) {
         //根据userid获取用户所有的链接信息
         User user = (User) session.getAttribute(userSessionKey);
-        List<UserLinkInfoResp> userLinkInfo = linkInfoService.getUserLinkInfo(user.getId());
+        List<UserLinkInfoResp> userLinkInfo = linkInfoService.getUserLinkInfo(user.getId(), pageNum);
+        PageInfo<UserLinkInfoResp> page = new PageInfo<>(userLinkInfo);
         //获取所有的链接分类信息
         List<LinkCategory> linkCategoryList = utilService.getLinkCategoryList();
         //获取状态信息
@@ -51,6 +54,7 @@ public class LinkInfoController {
         model.addAttribute("userLinkInfo", userLinkInfo);
         model.addAttribute("linkCategoryList", linkCategoryList);
         model.addAttribute("codeLibraryList", codeLibraryList);
+        model.addAttribute("page", page);
         return "linkInfo";
     }
 

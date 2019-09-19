@@ -34,7 +34,7 @@
 <body>
 <div class="container-fluid">
     <div style="margin-bottom: 2px;">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLinkInfoModal">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addLinkInfoModal">
             新增
         </button>
     </div>
@@ -80,17 +80,28 @@
             </tr>
         </tbody>
     </table>
-    <!--<div>-->
-        <!--<ul class="pagination pagination-sm">-->
-            <!--<li class="page-item"><a class="page-link" href="#">首页</a></li>-->
-            <!--<li class="page-item"><a class="page-link" href="#">上一页</a></li>-->
-            <!--<li class="page-item active"><a class="page-link" href="#">1</a></li>-->
-            <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
-            <!--<li class="page-item"><a class="page-link" href="#">3</a></li>-->
-            <!--<li class="page-item"><a class="page-link" href="#">下一页</a></li>-->
-            <!--<li class="page-item"><a class="page-link" href="#">尾页</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
+    <div>
+        <ul class="pagination pagination-sm">
+
+            <li th:if="${page.hasPreviousPage}" class="page-item"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=1}" href="#">&lt;&lt;</a></li>
+            <li th:if="${not page.hasPreviousPage}" class="page-item disabled"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=1}" href="#">&lt;&lt;</a></li>
+
+            <li th:if="${page.hasPreviousPage}" class="page-item"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=}+${page.prePage}" href="#">&lt;</a></li>
+            <li th:if="${not page.hasPreviousPage}" class="page-item disabled"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=}+${page.prePage}" href="#">&lt;</a></li>
+
+            <span th:each="p,memberStat:${page.navigatepageNums}">
+                <li th:if="${p==page.pageNum}" class="page-item active"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=}+${p}" href="#" th:text="${p}"></a></li>
+                <li th:if="${p!=page.pageNum}" class="page-item"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=}+${p}" href="#" th:text="${p}"></a></li>
+            </span>
+
+            <li th:if="${page.hasNextPage}" class="page-item"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=}+${page.nextPage}" href="#">&gt;</a></li>
+            <li th:if="${not page.hasNextPage}" class="page-item disabled"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=}+${page.nextPage}" href="#">&gt;</a></li>
+
+            <li th:if="${page.hasNextPage}" class="page-item"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=}+${page.pages}" href="#">&gt;&gt;</a></li>
+            <li th:if="${not page.hasNextPage}" class="page-item disabled"><a class="page-link" th:href="@{/personal/linkInfo/toLinkInfo?pageNum=}+${page.pages}" href="#">&gt;&gt;</a></li>
+
+        </ul>
+    </div>
 
 
     <!-- 新增链接信息模态框 -->
