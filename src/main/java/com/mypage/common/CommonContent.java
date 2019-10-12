@@ -24,4 +24,9 @@ public class CommonContent {
 
     public static final String LOGIN_LOG = "用户：{}，于{}登录系统。";
     public static final String REGIST_LOG = "用户：{}，于{}注册成功。";
+
+
+    //article
+    public static final String ARTICLE_ADD_ERROR = "保存失败";
+    public static final String ARTICLE_ADD_SUCCESS = "保存成功";
 }

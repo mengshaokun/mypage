@@ -41,6 +41,7 @@
             <span th:if="${session.userInfo != null}">
                 <span style="font-size: 20px"><a th:href="@{/personal/toPersonal}" th:text="${session.userInfo.nickName}"></a></span>
                 <span style="font-size: 20px"><a th:href="@{/base/logout}" target="_self">退出</a></span>
+                <span style="font-size: 20px"><a th:href="@{/article/articleList}">我的文章</a></span>
             </span>
             <span th:if="${session.userInfo == null}">
                 <span style="font-size: 20px"><a href="../html/login.html" target="_self">登录</a></span>

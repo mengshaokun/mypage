@@ -2,7 +2,7 @@
     通用css文件
 */
 /*设置页面icon*/
-document.write('<link rel="shortcut icon" href="../img/mypage_title_icon1.png" type="text/css">');
+document.write('<link rel="shortcut icon" href="mypage/../img/mypage_title_icon.png" type="text/css">');
 /*
 /!*新 Bootstrap4 核心 CSS 文件*!/
 document.write('<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css" type="text/css">');
