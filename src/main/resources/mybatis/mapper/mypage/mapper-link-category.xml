@@ -8,7 +8,7 @@
         LEFT JOIN link_category lc ON ulc.link_category_id = lc.id
         LEFT JOIN link_info li ON ulc.id = li.user_link_category_id and li.status = 1
         WHERE ulc.user_id = #{userId} and lc.status = 1
-        order by ulc.sort_no asc, li.sort_no asc
+        order by ulc.sort_no asc, li.sort_no asc, li.id asc
     </select>
 
 </mapper>

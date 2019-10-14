@@ -9,7 +9,7 @@
     </insert>
 
     <select id="selectArtilceList" resultMap="mapper.base.article">
-        select id,title,`describe`,content,insert_time as insertTime,update_time as updateTime
+        select id,title,`describe`,insert_time as insertTime,update_time as updateTime
         from article where author = #{author} order by insert_time desc
     </select>
 

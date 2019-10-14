@@ -59,6 +59,10 @@
                 <!--相当于compile，但是打包阶段做了exclude操作&ndash;&gt;-->
 			<!--<scope>provided</scope>-->
 		<!--</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 
 		<!--==================================================================================================spring-boot-devtools 热启动依赖包-->
 		<dependency>

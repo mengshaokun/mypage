@@ -24,6 +24,9 @@ public class MypageApplicationTests {
 	public void testRedisSet() {
 		boolean set = redisUtil.setStr("name", "mengsk123");
 		System.out.println(set);
+		Object name = redisUtil.getStr("name");
+		System.out.println(name);
+		redisUtil.strSetExpireSeconds("name", 60L);
 	}
 
 	@Test

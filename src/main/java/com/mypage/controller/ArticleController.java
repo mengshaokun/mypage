@@ -1,5 +1,6 @@
 package com.mypage.controller;
 
+import com.mypage.annotation.ArticleReSubmit;
 import com.mypage.common.Response;
 import com.mypage.entity.Article;
 import com.mypage.entity.User;
@@ -39,6 +40,7 @@ public class ArticleController {
 
     @RequestMapping("/addArticle")
     @ResponseBody
+    @ArticleReSubmit
     public Response addArticle(Article article, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute(userSessionKey);
         return articleService.addArticle(article, user);

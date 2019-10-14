@@ -40,7 +40,8 @@ public class WebConfig implements WebMvcConfigurer{
 
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/personal/**")
-                .addPathPatterns("/base/personal/checkNickNameIsExist");
+                .addPathPatterns("/base/personal/checkNickNameIsExist")
+                .addPathPatterns("/article/**");
 
     }
 

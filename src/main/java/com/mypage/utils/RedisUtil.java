@@ -7,6 +7,8 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by MSK on 2019/6/7.
  */
@@ -26,6 +28,22 @@ public class RedisUtil {
         return set(stringRedisTemplate.opsForValue(), key, value);
     }
 
+    public Object getStr(String key) {
+        return get(stringRedisTemplate.opsForValue(), key);
+    }
+
+    public void strSetExpireSeconds(String key, long timeout) {
+        strSetExpire(key, timeout, TimeUnit.SECONDS);
+    }
+
+    public void strSetExpire(String key, long timeout, TimeUnit unit) {
+        stringRedisTemplate.expire(key, timeout, unit);
+    }
+
+    public void delStr(String key) {
+        stringRedisTemplate.delete(key);
+    }
+
     private boolean set(ValueOperations valueOperations, String key, Object value) {
         try {
             valueOperations.set(key, value);
@@ -35,4 +53,9 @@ public class RedisUtil {
             return false;
         }
     }
+
+    private Object get(ValueOperations valueOperations, String key) {
+        return valueOperations.get(key);
+    }
+
 }
