@@ -1,8 +1,10 @@
 package com.mypage.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageInfo;
 import com.mypage.entity.CodeLibrary;
 import com.mypage.entity.LinkCategory;
+import com.mypage.entity.LinkInfoExport;
 import com.mypage.entity.User;
 import com.mypage.model.request.LinkInfoReq;
 import com.mypage.model.response.UserLinkInfoResp;
@@ -19,7 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -70,7 +76,18 @@ public class LinkInfoController {
         return "redirect:/personal/linkInfo/toLinkInfo";
     }
 
+    @RequestMapping(value = "/exportLinkInfo")
+    public void exportLinkInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute(userSessionKey);
+        List<LinkInfoExport> linkInfoExports = linkInfoService.exportLinkInfo(user.getId());
 
+        response.setContentType("application/vnd.ms-excel");
+        response.setCharacterEncoding("utf-8");
+        String fileName = URLEncoder.encode("链接信息", "UTF-8");
+        response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+        EasyExcel.write(response.getOutputStream(), LinkInfoExport.class).sheet("链接信息").doWrite(linkInfoExports);
+    }
 
 
 

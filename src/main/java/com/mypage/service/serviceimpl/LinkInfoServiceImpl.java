@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.mypage.dao.LinkInfoDao;
 import com.mypage.dao.UserLinkCategoryDao;
 import com.mypage.entity.LinkInfo;
+import com.mypage.entity.LinkInfoExport;
 import com.mypage.entity.UserLinkCategory;
 import com.mypage.model.request.LinkInfoReq;
 import com.mypage.model.response.UserLinkInfoResp;
@@ -70,5 +71,10 @@ public class LinkInfoServiceImpl implements LinkInfoService {
         linkInfo.setSortNo(linkInfoReq.getSortNo());
 
         linkInfoDao.insertLinkInfo(linkInfo);
+    }
+
+    @Override
+    public List<LinkInfoExport> exportLinkInfo(Integer userId) {
+        return linkInfoDao.selectAllLinkInfoForExport(userId);
     }
 }

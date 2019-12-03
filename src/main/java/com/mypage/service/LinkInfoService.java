@@ -1,5 +1,6 @@
 package com.mypage.service;
 
+import com.mypage.entity.LinkInfoExport;
 import com.mypage.model.request.LinkInfoReq;
 import com.mypage.model.response.UserLinkInfoResp;
 
@@ -15,4 +16,5 @@ public interface LinkInfoService {
 
     void addLinkInfo(LinkInfoReq linkInfoReq);
 
+    List<LinkInfoExport> exportLinkInfo(Integer userId);
 }

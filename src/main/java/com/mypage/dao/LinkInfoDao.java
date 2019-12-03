@@ -1,6 +1,7 @@
 package com.mypage.dao;
 
 import com.mypage.entity.LinkInfo;
+import com.mypage.entity.LinkInfoExport;
 import com.mypage.model.response.UserLinkInfoResp;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,4 +18,6 @@ public interface LinkInfoDao {
     void deleteLinkInfo(@Param("id") Integer id);
 
     void insertLinkInfo(@Param("linkInfo") LinkInfo linkInfo);
+
+    List<LinkInfoExport> selectAllLinkInfoForExport(@Param("userId") Integer userId);
 }

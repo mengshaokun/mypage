@@ -20,4 +20,14 @@
         insert into link_info (name, url, user_link_category_id, status, sort_no)
         values (#{linkInfo.name}, #{linkInfo.url}, #{linkInfo.userLinkCategoryId}, #{linkInfo.status}, #{linkInfo.sortNo})
     </insert>
+
+    <select id="selectAllLinkInfoForExport" resultMap="mapper.base.linkInfoExport">
+        select li.name,li.url,(select @rownum := @rownum + 1 from (select @rownum := 0) r) as no
+        from link_info li
+        left join user_link_category ulc on ulc.id = li.user_link_category_id
+        left join link_category lc on lc.id = ulc.link_category_id
+        where ulc.user_id = #{userId}
+        order by ulc.sort_no asc, li.sort_no asc
+    </select>
+
 </mapper>

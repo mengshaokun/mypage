@@ -48,4 +48,10 @@
         <result column="item_name" property="itemName" jdbcType="VARCHAR"/>
         <result column="sort_no" property="sortNo" jdbcType="INTEGER"/>
     </resultMap>
+    
+    <resultMap id="linkInfoExport" type="com.mypage.entity.LinkInfoExport">
+        <result column="no" property="no" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+    </resultMap>
 </mapper>
