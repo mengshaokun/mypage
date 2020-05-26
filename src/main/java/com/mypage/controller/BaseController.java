@@ -144,6 +144,6 @@ public class BaseController {
         HttpSession session = request.getSession();
         session.removeAttribute(userSessionKey);
         redirectAttributes.addAttribute("flag", "1");
-        return "redirect:/main/toMain";
+        return "redirect:/main";
     }
 }

@@ -7,7 +7,8 @@
     <meta name="data-spm" content="1" data-spm-protocol="i"/>
     <link rel="stylesheet" href="//g.alicdn.com/browser/uc123_no/0.2.82/page/op/css/uc.op.pkg.min.css">
 
-    <script src="../js/common.js"></script>
+    <link rel="shortcut icon" th:href="@{/img/mypage_title_icon.png}" type="text/css">
+
     <script th:src="@{/js/jquery-3.4.1.min.js}" type="text/javascript"></script>
     <!--主页暂时不用bootstrap框架样式-->
 <!--
@@ -45,7 +46,7 @@
             <div id="mainInfo" style="font-size: 20px;display: none;z-index: 999999;background-color: #F0EFEF;position: absolute;width: 90px;">
                 <div th:if="${session.userInfo != null}">
                     <div style="margin-top: 5px;margin-left: 5px;">
-                        <a th:href="@{/personal/toPersonal}" th:text="${session.userInfo.nickName}"></a>
+                        <a th:href="@{/personal/toPersonal}" th:text="个人中心"></a>
                     </div>
                     <div style="margin-top: 5px;margin-left: 5px;">
                         <a th:href="@{/article/articleList}">我的文章</a>

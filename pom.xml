@@ -163,8 +163,27 @@
 
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<datasource.url>jdbc:mysql://106.53.230.76:3369/mypage_qa?useUnicode=true&amp;characterEncoding=utf-8</datasource.url>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>production</id>
+			<properties>
+				<datasource.url>jdbc:mysql://106.53.230.76:3369/mypage?useUnicode=true&amp;characterEncoding=utf-8</datasource.url>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
-		<finalName>mypage</finalName>
+		<finalName>ROOT</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -9,7 +9,7 @@
 
 	<title>登录</title>
 
-	<script src="../js/common.js"></script>
+	<link rel="shortcut icon" href="../img/mypage_title_icon.png" type="text/css">
 	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
 	<link rel="stylesheet" href="../css/toastr.min.css" type="text/css">
 
@@ -27,7 +27,7 @@
 				        required: true,
 						checkNickName: true,
                         remote: {
-                            url: "/mypage/base/checkNickNameIsExist",     //后台处理程序  远程地址只能输出 "true" 或 "false"，不能有其他输出。
+                            url: "/base/checkNickNameIsExist",     //后台处理程序  远程地址只能输出 "true" 或 "false"，不能有其他输出。
                             type: "post",               //数据发送方式
                             dataType: "json",           //接受数据格式
                             data: {                     //要传递的数据
@@ -60,13 +60,13 @@
                 submitHandler: function(form) {
                     $.ajax({
                         type: "POST",
-                        url: "/mypage/base/regist",
+                        url: "/base/regist",
                         data: $("#registForm").serialize(),
                         success: function (data) {
                             console.info(data.code);
                             if (data.code == 200) {
                                 toastr.success(data.data);
-                                window.location.href = "/mypage/main/toMain"
+                                window.location.href = "/main"
                             }
                             if (data.code != 200) {
                                 toastr.error(data.data);

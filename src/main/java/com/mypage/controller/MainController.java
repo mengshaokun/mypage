@@ -25,7 +25,6 @@ import java.util.List;
  * 首页相关
  */
 @Controller
-@RequestMapping("/main")
 public class MainController {
 
     @Autowired
@@ -41,7 +40,7 @@ public class MainController {
      * @param request
      * @return
      */
-    @RequestMapping("/toMain")
+    @RequestMapping("/main")
     public String toMainPage(Model model, String flag, HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         //获取cookie

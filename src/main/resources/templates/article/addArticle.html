@@ -9,7 +9,7 @@
 
 	<title>添加文章</title>
 
-	<script th:src="@{/js/common.js}"></script>
+	<link rel="shortcut icon" th:href="@{/img/mypage_title_icon.png}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/toastr.min.css}" type="text/css">
 
@@ -54,13 +54,13 @@
                 submitHandler: function(form) {
                     $.ajax({
                         type: "POST",
-                        url: "/mypage/article/addArticle",
+                        url: "/article/addArticle",
                         data: $("#addArticle").serialize(),
                         success: function (data) {
                             console.info(data.code);
                             if (data.code == 200) {
                                 toastr.success(data.data);
-                                window.location.href = "/mypage/article/articleList"
+                                window.location.href = "/article/articleList"
                             }
                             if (data.code != 200) {
                                 toastr.error(data.data);
