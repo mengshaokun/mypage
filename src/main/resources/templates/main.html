@@ -6,21 +6,13 @@
     <title>我的主页</title>
     <meta name="data-spm" content="1" data-spm-protocol="i"/>
     <link rel="stylesheet" href="//g.alicdn.com/browser/uc123_no/0.2.82/page/op/css/uc.op.pkg.min.css">
-
     <link rel="shortcut icon" th:href="@{/img/mypage_title_icon.png}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/toastr.min.css}" type="text/css">
 
     <script th:src="@{/js/jquery-3.4.1.min.js}" type="text/javascript"></script>
-    <!--主页暂时不用bootstrap框架样式-->
-<!--
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/toastr.min.css" type="text/css">
-
-    <script src="../js/jquery-3.4.1.min.js" type="text/javascript"></script>
-    <script src="../js/popper.min.js" type="text/javascript"></script>&lt;!&ndash;popper.min.js 用于弹窗、提示、下拉菜单&ndash;&gt;
-    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="../js/toastr.min.js" type="text/javascript"></script>
--->
+    <script th:src="@{/js/popper.min.js}" type="text/javascript"></script><!--popper.min.js 用于弹窗、提示、下拉菜单-->
+    <script th:src="@{/js/toastr.min.js}" type="text/javascript"></script>
 
     <base target="_blank">
 </head>
@@ -65,10 +57,35 @@
                 </div>
             </div>
         </div>
+        <div id="flushWeather" style="float: right; margin-top: 28px; margin-right: 55px; cursor: pointer">
+            <img id="flushImg" th:src="@{/img/mypage_flush_weather.gif}" style="width: 20px; height: 20px;" onclick="getWeatherInfo()">
+        </div>
+        <div id="weather" style="float: right; margin-top: 30px; margin-right: 10px;">
+            <a style="text-decoration: none" href='http://www.weather.com.cn/weathern/101010100.shtml'>
+                <span id="weatherInfo" style="font-size: 20px;"></span>
+            </a>
+        </div>
     </div>
 </div>
-<!-- add to check html,can not be delete:uc123-check-mid -->
 <div id="main-container">
+    <div id="masthead">
+        快捷功能：
+        <span class="quickFun" onclick="showTranslate(this)" onoff="off">百度翻译</span><!-- -
+        <span class="quickFun" onclick="" onoff="off">百度翻译</span> -
+        <span class="quickFun" onclick="" onoff="off">百度翻译</span>-->
+    </div>
+    <div id="translate" class="quick">
+        <div>
+            翻译成：
+            <select id="transTo" style="width: 70px; height: 25px;">
+                <option value="en">英文</option>
+                <option value="zh">中文</option>
+            </select>
+            <button onclick="trans()" style="height: 25px;" id="transBtn">翻译</button>
+        </div>
+        <textarea class="translate-area" id="transQuery" placeholder="需要翻译的内容"></textarea>
+        <textarea class="translate-area" id="transResult" disabled></textarea>
+    </div>
     <div class="main-content-row">
         <span th:each="linkCategory,memberStat:${linkCategoryList}">
             <div id="ty_sczh" name="ty_sczh" class="category mod">
@@ -91,31 +108,18 @@
     </div>
 
 </div>
-<!--<div class="footer">-->
-    <!--<p class="footer-links">-->
-        <!--<a href="http://www.uc.cn">关于UC</a>-->
-        <!--<span class="line">|</span>-->
-        <!--<a href="http://bbs.uc.cn">UC社区</a>-->
-        <!--<span class="line">|</span>-->
-        <!--<a href="http://pc.uc.cn/">UC浏览器</a>-->
-        <!--<span class="line">|</span>-->
-        <!--<a href="http://feedback.uc.cn/feedback/feedback/index?instance=pc_client&pf=145">意见反馈</a>-->
-        <!--<span class="line">|</span>-->
-        <!--<a href="http://wpa.qq.com/msgrd?v=3&uin=1729568005&site=qq&menu=yes">申请收录</a>-->
-        <!--<span class="line">|</span>-->
-        <!--<a href="http://www.12377.cn/">举报中心</a>-->
-    <!--</p>-->
-    <!--<p>-->
-        <!--<span class="copyright">广州市动景计算机科技有限公司</span>-->
-        <!--<span class="line">|</span>-->
-        <!--<span class="copyright">增值电信业务经营许可证: <a href="http://www.miitbeian.gov.cn">粤B2-20070379</a><a href="http://www.miitbeian.gov.cn">粤ICP备09210879号</a></span>-->
-    <!--</p>-->
-<!--</div>-->
+<div class="footer">
+    <p class="footer-links">
+        <a href="">关于本站</a>
+        <span class="line">|</span>
+        <a href="">意见反馈</a>
+    </p>
+    <p>
+        <a href="http://www.miitbeian.gov.cn">粤ICP备09210879号</a></span>
+    </p>
+</div>
 
-<script type="text/javascript">
-    $("#main").hover(function(){
-        $("#mainInfo").toggle();
-    });
-</script>
+<script th:src="@{/js/main.js}" type="text/javascript"></script>
+
 </body>
 </html>
