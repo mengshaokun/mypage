@@ -2,12 +2,16 @@ package com.mypage.service.serviceimpl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.mypage.common.CommonContent;
+import com.mypage.common.Response;
 import com.mypage.dao.LinkInfoDao;
 import com.mypage.dao.UserLinkCategoryDao;
 import com.mypage.entity.LinkInfo;
 import com.mypage.entity.LinkInfoExport;
+import com.mypage.entity.User;
 import com.mypage.entity.UserLinkCategory;
 import com.mypage.model.request.LinkInfoReq;
+import com.mypage.model.request.ModifyLinkInfoReq;
 import com.mypage.model.response.UserLinkInfoResp;
 import com.mypage.service.LinkInfoService;
 import lombok.extern.slf4j.Slf4j;
@@ -71,6 +75,33 @@ public class LinkInfoServiceImpl implements LinkInfoService {
         linkInfo.setSortNo(linkInfoReq.getSortNo());
 
         linkInfoDao.insertLinkInfo(linkInfo);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public Response modifyLinkInfo(User user, ModifyLinkInfoReq modifyLinkInfoReq) {
+        UserLinkCategory userLinkCategory = userLinkCategoryDao.selectByUserIdAndCategoryId(user.getId(), modifyLinkInfoReq.getLinkCategoryId());
+        Integer userLinkCategoryId = null;
+        if (userLinkCategory != null) {
+            userLinkCategory = new UserLinkCategory();
+            userLinkCategory.setUserId(user.getId());
+            userLinkCategory.setLinkCategoryId(modifyLinkInfoReq.getLinkCategoryId());
+            userLinkCategory.setSortNo(999);
+            userLinkCategoryDao.insertUserLinkCategory(userLinkCategory);
+
+            userLinkCategory = userLinkCategoryDao.selectByUserIdAndCategoryId(user.getId(), modifyLinkInfoReq.getLinkCategoryId());
+        }
+        userLinkCategoryId = userLinkCategory.getId();
+
+        LinkInfo linkInfo = new LinkInfo();
+        linkInfo.setId(modifyLinkInfoReq.getId());
+        linkInfo.setName(modifyLinkInfoReq.getName());
+        linkInfo.setUrl(modifyLinkInfoReq.getUrl());
+        linkInfo.setUserLinkCategoryId(userLinkCategoryId);
+        linkInfo.setStatus(modifyLinkInfoReq.getStatus());
+        linkInfo.setSortNo(modifyLinkInfoReq.getSortNo());
+
+        return Response.SUCCESS(CommonContent.UPDATE_SUCCESS);
     }
 
     @Override

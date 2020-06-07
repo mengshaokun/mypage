@@ -7,7 +7,7 @@ import com.mypage.common.CommonContent;
 import com.mypage.common.Response;
 import com.mypage.model.request.TranslateReq;
 import com.mypage.model.response.WeatherInfoResp;
-import com.mypage.utils.HttpUtils;
+import com.mypage.utils.HttpClientUtils;
 import com.mypage.utils.IpUtils;
 import com.mypage.utils.ListUtils;
 import com.mypage.utils.baidutranslate.TransApi;
@@ -33,11 +33,11 @@ import java.util.Map;
 public class UtilController {
 
     private static final String OUT_PUT = "JSON";
-    private static final String DEFAULT_IP = "125.33.169.142";
+    private static final String DEFAULT_IP = "60.19.172.51";
     private static final String TRANS_DEFAULT_FROM = "auto";
 
     @Resource
-    private HttpUtils httpUtils;
+    private HttpClientUtils httpUtils;
 
     @Value("${system.flag}")
     private String systemFlag;
@@ -73,7 +73,7 @@ public class UtilController {
         params.put("output", OUT_PUT);
         params.put("key", ibsMapKey);
         //根据ip地址获取地理位置信息
-        String positionStr = httpUtils.get(ibsMapIpUrl, params);
+        String positionStr = httpUtils.doGet(ibsMapIpUrl, params);
         if (positionStr == null) {
             return Response.FAIL();
         }
@@ -86,9 +86,10 @@ public class UtilController {
         //城市的adcode编码
         String adCode = positionObject.getString("adcode");
         //根据adCode获取天气信息
-        String s = ibsMapWeatherUrl + "?city=" + adCode + "&key=" + ibsMapKey;
-        String weatherStr = httpUtils.get(s, null);
-//        String weatherStr = httpUtils.get(ibsMapWeatherUrl, p);
+        Map<String, String> weatherMap = new HashMap<>();
+        weatherMap.put("city", adCode);
+        weatherMap.put("key", ibsMapKey);
+        String weatherStr = httpUtils.doGet(ibsMapWeatherUrl, weatherMap);
         if (weatherStr == null) {
             return Response.FAIL();
         }

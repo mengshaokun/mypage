@@ -2,11 +2,13 @@ package com.mypage.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageInfo;
+import com.mypage.common.Response;
 import com.mypage.entity.CodeLibrary;
 import com.mypage.entity.LinkCategory;
 import com.mypage.entity.LinkInfoExport;
 import com.mypage.entity.User;
 import com.mypage.model.request.LinkInfoReq;
+import com.mypage.model.request.ModifyLinkInfoReq;
 import com.mypage.model.response.UserLinkInfoResp;
 import com.mypage.service.LinkInfoService;
 import com.mypage.service.UtilService;
@@ -16,10 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -74,6 +73,16 @@ public class LinkInfoController {
     public String addLinkInfo(@Validated LinkInfoReq linkInfoReq, BindingResult bindingResult) {
         linkInfoService.addLinkInfo(linkInfoReq);
         return "redirect:/personal/linkInfo/toLinkInfo";
+    }
+
+    @RequestMapping(value = "/modifyLinkInfo", method = RequestMethod.POST)
+    @ResponseBody
+    public Response modifyLinkInfo(@Validated ModifyLinkInfoReq modifyLinkInfoReq, BindingResult bindingResult, HttpSession session) {
+        if (bindingResult.hasErrors()) {
+            return Response.FAIL(bindingResult.getAllErrors().get(0).getDefaultMessage());
+        }
+        User user = (User) session.getAttribute(userSessionKey);
+        return linkInfoService.modifyLinkInfo(user, modifyLinkInfoReq);
     }
 
     @RequestMapping(value = "/exportLinkInfo")

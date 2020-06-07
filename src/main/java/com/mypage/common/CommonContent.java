@@ -5,7 +5,7 @@ package com.mypage.common;
  * 定义返回信息
  */
 public class CommonContent {
-    public static final String KEY = "sign_key";
+    public static final String KEY = "sign_key_";
 
     public static final String USER_NULL = "用户名或密码错误！";
     public static final String LOGIN_SUCCESS = "登录成功";
@@ -22,16 +22,12 @@ public class CommonContent {
     public static final String MODIFY_LINK_INFO_ERROR = "修改链接信息失败！";
     public static final String UPDATE_SUCCESS = "修改成功！";
     public static final String USER_ID_NULL = "用户ID不能为空！";
-
+    public static final String LINK_INFO_ID_NULL = "链接ID不能为空！";
     public static final String LOGIN_LOG = "用户：{}，于{}登录系统。";
     public static final String REGIST_LOG = "用户：{}，于{}注册成功。";
-
     public static final String GET_POSITION_ERROR = "根据IP获取地理位置失败：{}";
     public static final String GET_WEATHER_ERROR = "获取天气失败：{}";
-
     public static final String TRANS_ERROR = "翻译失败，请重试";
-
-    //article
     public static final String ARTICLE_ADD_ERROR = "保存失败";
     public static final String ARTICLE_ADD_SUCCESS = "保存成功";
 }

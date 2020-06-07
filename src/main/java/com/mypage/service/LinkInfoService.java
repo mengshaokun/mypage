@@ -1,7 +1,10 @@
 package com.mypage.service;
 
+import com.mypage.common.Response;
 import com.mypage.entity.LinkInfoExport;
+import com.mypage.entity.User;
 import com.mypage.model.request.LinkInfoReq;
+import com.mypage.model.request.ModifyLinkInfoReq;
 import com.mypage.model.response.UserLinkInfoResp;
 
 import java.util.List;
@@ -17,4 +20,6 @@ public interface LinkInfoService {
     void addLinkInfo(LinkInfoReq linkInfoReq);
 
     List<LinkInfoExport> exportLinkInfo(Integer userId);
+
+    Response modifyLinkInfo(User user, ModifyLinkInfoReq modifyLinkInfoReq);
 }

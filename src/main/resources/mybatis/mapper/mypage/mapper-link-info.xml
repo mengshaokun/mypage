@@ -30,4 +30,8 @@
         order by ulc.sort_no asc, li.sort_no asc
     </select>
 
+    <update id="updateLinkInfo">
+        update link_info set name = #{name}, url = #{url}, user_link_category_id = #{userLinkCategoryId}, status = #{status}, sort_no = #{sortNo}
+        where id = #{id}
+    </update>
 </mapper>
