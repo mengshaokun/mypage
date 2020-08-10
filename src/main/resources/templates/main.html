@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <script src="//g.alicdn.com/tb/tracker/3.0.5/index.js"></script>
-    <title>我的主页</title>
+    <title>我的主页 - 收藏链接防止丢失 一个有意义的工具类型网站</title>
     <meta name="data-spm" content="1" data-spm-protocol="i"/>
     <link rel="stylesheet" href="//g.alicdn.com/browser/uc123_no/0.2.82/page/op/css/uc.op.pkg.min.css">
     <link rel="shortcut icon" th:href="@{/img/mypage_title_icon.png}" type="text/css">
@@ -40,9 +40,9 @@
                     <div style="margin-top: 5px;margin-left: 5px;">
                         <a th:href="@{/personal/toPersonal}" th:text="个人中心"></a>
                     </div>
-                    <div style="margin-top: 5px;margin-left: 5px;">
+                    <!--<div style="margin-top: 5px;margin-left: 5px;">
                         <a th:href="@{/article/articleList}">我的文章</a>
-                    </div>
+                    </div>-->
                     <div style="margin-top: 5px;margin-left: 5px;margin-bottom: 5px;">
                         <a th:href="@{/base/logout}" target="_self">退出</a>
                     </div>
@@ -70,7 +70,7 @@
 <div id="main-container">
     <div id="masthead">
         快捷功能：
-        <span class="quickFun" onclick="showTranslate(this)" onoff="off">百度翻译</span><!-- -
+        <span class="quickFun" onclick="showTranslate(this)" onoff="off">翻译</span><!-- -
         <span class="quickFun" onclick="" onoff="off">百度翻译</span> -
         <span class="quickFun" onclick="" onoff="off">百度翻译</span>-->
     </div>
@@ -83,7 +83,7 @@
             </select>
             <button onclick="trans()" style="height: 25px;" id="transBtn">翻译</button>
         </div>
-        <textarea class="translate-area" id="transQuery" placeholder="需要翻译的内容"></textarea>
+        <textarea class="translate-area" id="transQuery" oninput="checkLanguage()" placeholder="需要翻译的内容"></textarea>
         <textarea class="translate-area" id="transResult" disabled></textarea>
     </div>
     <div class="main-content-row">
@@ -110,12 +110,12 @@
 </div>
 <div class="footer">
     <p class="footer-links">
-        <a href="">关于本站</a>
+        <span style="color: #C5C5C5">技术交流QQ群：1109877584</span>
         <span class="line">|</span>
-        <a href="">意见反馈</a>
+        <a href="https://support.qq.com/product/167985">意见反馈</a>
     </p>
     <p>
-        <a href="http://www.miitbeian.gov.cn">粤ICP备09210879号</a></span>
+        <a href="http://www.beian.miit.gov.cn">京ICP备19036468号</a></span>
     </p>
 </div>
 

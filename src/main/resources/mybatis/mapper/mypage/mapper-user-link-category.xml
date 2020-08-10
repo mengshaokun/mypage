@@ -3,11 +3,16 @@
 <mapper namespace="com.mypage.dao.UserLinkCategoryDao">
     <insert id="insertUserLinkCategory" useGeneratedKeys="true" keyProperty="id" parameterType="com.mypage.entity.UserLinkCategory">
         insert into user_link_category (user_id, link_category_id, sort_no)
-        values (#{userLinkCategory.userId}, #{userLinkCategory.linkCategoryId}, #{userLinkCategory.sortNo})
+        values (#{userId}, #{linkCategoryId}, #{sortNo})
     </insert>
 
     <select id="selectByUserIdAndCategoryId" resultMap="mapper.base.userLinkCategory">
         select id, user_id, link_category_id, sort_no from user_link_category where user_id = #{userId} and link_category_id = #{linkCategoryId}
     </select>
+
+    <update id="updateLinkInfoById">
+        update link_info set name = #{name}, url = #{url}, user_link_category_id = #{userLinkCategoryId}, status = #{status}, sort_no = #{sortNo}
+        where id = #{id}
+    </update>
 
 </mapper>

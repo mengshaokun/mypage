@@ -61,8 +61,6 @@ public class LinkInfoServiceImpl implements LinkInfoService {
             userLinkCategory.setLinkCategoryId(linkInfoReq.getLinkCategoryId());
             userLinkCategory.setSortNo(999);
             userLinkCategoryDao.insertUserLinkCategory(userLinkCategory);
-
-            userLinkCategory = userLinkCategoryDao.selectByUserIdAndCategoryId(linkInfoReq.getUserId(), linkInfoReq.getLinkCategoryId());
         }
 
         userLinkCategoryId = userLinkCategory.getId();
@@ -82,14 +80,12 @@ public class LinkInfoServiceImpl implements LinkInfoService {
     public Response modifyLinkInfo(User user, ModifyLinkInfoReq modifyLinkInfoReq) {
         UserLinkCategory userLinkCategory = userLinkCategoryDao.selectByUserIdAndCategoryId(user.getId(), modifyLinkInfoReq.getLinkCategoryId());
         Integer userLinkCategoryId = null;
-        if (userLinkCategory != null) {
+        if (userLinkCategory == null) {
             userLinkCategory = new UserLinkCategory();
             userLinkCategory.setUserId(user.getId());
             userLinkCategory.setLinkCategoryId(modifyLinkInfoReq.getLinkCategoryId());
             userLinkCategory.setSortNo(999);
             userLinkCategoryDao.insertUserLinkCategory(userLinkCategory);
-
-            userLinkCategory = userLinkCategoryDao.selectByUserIdAndCategoryId(user.getId(), modifyLinkInfoReq.getLinkCategoryId());
         }
         userLinkCategoryId = userLinkCategory.getId();
 
@@ -100,6 +96,8 @@ public class LinkInfoServiceImpl implements LinkInfoService {
         linkInfo.setUserLinkCategoryId(userLinkCategoryId);
         linkInfo.setStatus(modifyLinkInfoReq.getStatus());
         linkInfo.setSortNo(modifyLinkInfoReq.getSortNo());
+
+        userLinkCategoryDao.updateLinkInfoById(linkInfo);
 
         return Response.SUCCESS(CommonContent.UPDATE_SUCCESS);
     }

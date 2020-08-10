@@ -33,7 +33,7 @@ import java.util.Map;
 public class UtilController {
 
     private static final String OUT_PUT = "JSON";
-    private static final String DEFAULT_IP = "60.19.172.51";
+    private static final String DEFAULT_IP = "111.196.30.202";
     private static final String TRANS_DEFAULT_FROM = "auto";
 
     @Resource
