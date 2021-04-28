@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -15,9 +16,9 @@ import java.util.concurrent.TimeUnit;
 @Component("RedisUtil")
 public class RedisUtil {
 
-    @Autowired
+    @Resource
     private RedisTemplate<String, Object> redisTemplate;
-    @Autowired
+    @Resource
     private StringRedisTemplate stringRedisTemplate;
 
     public boolean setObj(String key, Object value) {

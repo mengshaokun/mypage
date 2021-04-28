@@ -1,0 +1,15 @@
+.translate-area {
+    width: 45%;
+    height: 100px;
+    resize: initial;
+}
+.quickFun {
+    cursor: pointer;
+}
+.quick {
+    margin-top: 5px;
+    display: none;
+}
+.quick div {
+    margin-bottom: 5px;
+}

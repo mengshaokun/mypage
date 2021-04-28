@@ -1,5 +1,7 @@
 package com.mypage.utils;
 
+import com.mypage.common.CommonContent;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +20,7 @@ public class CookieUtils {
      */
     public static void creteCookie(String userName, HttpServletResponse response) {
         Cookie userCookie = new Cookie("userName", userName);
-        Cookie ssidCookie = new Cookie("ssid", SignUtils.md5Encrypt(userName));
+        Cookie ssidCookie = new Cookie("ssid", SignUtils.md5(CommonContent.KEY + userName));
         userCookie.setMaxAge(DEFAULT_TIME);
         ssidCookie.setMaxAge(DEFAULT_TIME);
         userCookie.setPath("/");

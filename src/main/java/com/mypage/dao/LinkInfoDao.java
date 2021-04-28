@@ -20,4 +20,6 @@ public interface LinkInfoDao {
     void insertLinkInfo(@Param("linkInfo") LinkInfo linkInfo);
 
     List<LinkInfoExport> selectAllLinkInfoForExport(@Param("userId") Integer userId);
+
+    void updateLinkInfo(@Param("linkInfo") LinkInfo linkInfo);
 }

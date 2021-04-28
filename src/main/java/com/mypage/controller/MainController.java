@@ -1,5 +1,6 @@
 package com.mypage.controller;
 
+import com.mypage.common.CommonContent;
 import com.mypage.entity.LinkCategory;
 import com.mypage.entity.User;
 import com.mypage.service.LinkCategoryService;
@@ -72,7 +73,7 @@ public class MainController {
         }
 
         if (userName != null && ssid != null) {
-            equals = ssid.equals(SignUtils.md5Encrypt(userName));
+            equals = ssid.equals(SignUtils.md5(CommonContent.KEY + userName));
         }
 
         if (equals) {

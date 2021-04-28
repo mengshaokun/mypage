@@ -161,6 +161,14 @@
 			<version>2.0.5</version>
 		</dependency>
 
+		<!--==================================================================================================httpclient-->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.6</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<profiles>
@@ -170,6 +178,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
+				<system.flag>test</system.flag>
 				<datasource.url>jdbc:mysql://106.53.230.76:3369/mypage_qa?useUnicode=true&amp;characterEncoding=utf-8</datasource.url>
 			</properties>
 		</profile>
@@ -177,6 +186,7 @@
 		<profile>
 			<id>production</id>
 			<properties>
+				<system.flag>production</system.flag>
 				<datasource.url>jdbc:mysql://106.53.230.76:3369/mypage?useUnicode=true&amp;characterEncoding=utf-8</datasource.url>
 			</properties>
 		</profile>
